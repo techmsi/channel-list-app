@@ -1,0 +1,34 @@
+$bodyFont: 'Roboto', sans-serif;
+$headingFont: 'Roboto Condensed', sans-serif;
+
+html {
+  font-size: 100%;
+}
+
+body, ul, li, section, div, img, time, h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eee;
+  box-sizing: border-box;
+  color: #111;
+  font-family: $bodyFont;
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+h2 {
+  font-family: $headingFont;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  margin: 1rem;
+}

@@ -1,0 +1,18 @@
+$small: 300px;
+$medium: 900px;
+
+// Small screen size (sm)
+@media (max-width: $small) {
+  html {
+    font-size: 130%;
+  }
+  @include item--sm();
+}
+
+// Medium screen size (md)
+@media (min-width: $medium) {
+  html {
+    font-size: 95%;
+  }
+  @include item--md();
+}

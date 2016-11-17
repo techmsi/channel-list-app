@@ -1,0 +1,8 @@
+.DS_Store
+*.orig
+/*.log
+/node_modules
+/dist
+# Ignore build files
+/public/js
+/public/css

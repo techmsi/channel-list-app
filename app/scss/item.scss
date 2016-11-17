@@ -1,0 +1,108 @@
+$itemSpacing: .95rem;
+$itemBasis: 12rem;
+
+.item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1rem;
+  margin: 1rem;
+
+  & > * {
+    padding: 0 $itemSpacing;
+  }
+
+  &__header {
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding-top: 1.5rem;
+    line-height: 2.5rem;
+  }
+
+  // Image - subject & author images
+  &__image {
+    &:first-of-type {
+      align-self: flex-end;
+    }
+    img {
+      border-radius: 50%;
+      height: auto;
+      width: 3rem;
+    }
+  }
+
+  &__details,
+  &__details > * {
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: flex-end;
+    justify-content: space-between;
+  }
+
+  &__details,
+  &__description {
+    width: 95%;
+  }
+
+  // Description - course title & description
+  &__description {
+    line-height: 2rem;
+    p {
+      line-height: 1.5rem;
+    }
+  }
+
+  // Author - author & author avatar
+  &__author > * {
+    padding: 0 $itemSpacing;
+  }
+
+  // Time
+  &__time {
+    & time:first-child::after {
+      content: '-';
+      padding: 0 .25rem;
+    }
+  }
+}
+
+// Called in media-queries.scss
+@mixin item--sm() {
+  .item {
+    flex-direction: row;
+    margin: 0;
+
+    &__details,
+    &__description {
+      width: 50%;
+    }
+
+    &__image {
+      &:first-of-type {
+        align-self: flex-start;
+      }
+    }
+  }
+}
+
+@mixin item--md() {
+  .item {
+    flex-direction: row;
+    margin: 0;
+
+    &__details,
+    &__description {
+      width: 50%;
+    }
+
+    &__image {
+      &:first-of-type {
+        align-self: flex-start;
+      }
+    }
+  }
+
+}
