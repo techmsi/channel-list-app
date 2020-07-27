@@ -1,21 +1,27 @@
 # Channel List App
 
-* React app for listing channels
+- React app for listing channels
 
 ## Run in production
+
 ```bash
-npm start
+yarn start
 ```
 
 ## Run while developing
-* In one tab
+
+- In one tab
+
 ```bash
-npm run build-dev
+yarn build-dev
 ```
-* In another tab
+
+- In another tab
+
 ```bash
-npm start
+yarn start
 ```
 
 ## Test
-* not yet implemented
+
+- not yet implemented

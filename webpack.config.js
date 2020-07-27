@@ -1,68 +1,58 @@
-const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const autoprefixer = require('autoprefixer');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const { resolve, join } = require('path');
 
-const appFolder = 'app';
-const isNotProduction = process.env.NODE_ENV !== 'production';
+const exclude = /node_modules/;
+const appFolder = resolve(__dirname, './src');
+const publicFolder = resolve(__dirname, 'public');
+const distFolder = join(publicFolder, 'js');
+
+const babelRule = {
+  test: /\.(js|jsx)$/,
+  exclude,
+  use: {
+    loader: 'babel-loader',
+  },
+};
+
+const htmlRule = {
+  test: /\.html$/,
+  use: [
+    {
+      loader: 'html-loader',
+    },
+  ],
+};
+
+const styleRule = {
+  test: /\.scss$/,
+  use: ['style-loader', 'css-loader', 'sass-loader'],
+};
 
 module.exports = {
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-hot-middleware/client',
-    `./${appFolder}/client.js`,
-  ],
+  entry: resolve(appFolder, 'main.js'),
   output: {
-    path: path.join(__dirname, 'public'),
+    path: distFolder,
     publicPath: '/',
-    filename: 'js/bundle.js'
+    filename: 'bundle.js',
   },
-  sassLoader: {
-    includePaths: [ 'scss/' ]
-  },
-  cache: true,
-  progress: true,
-  devtool: false,
-  watch: false,
   module: {
-    loaders: [
-      {
-        test:/\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          cacheDirectory: true,
-          presets: [ 'es2015', 'stage-2', 'react' ],
-          plugins: [ 'react-hot-loader/babel', 'transform-class-properties' ]
-        }
-      },
-      {
-          test: /\.scss$/,
-          loaders: ['style', 'css?sourceMap!sass?sourceMap' , ExtractTextPlugin.extract('css!sass')]
-      },
-      {
-        include: /\.json$/,
-        loaders: ['json-loader']
-      }
-    ],
-    postcss: [
-      autoprefixer({
-        browsers: ['last 2 versions', '> 1%']
-      })
-    ]
-  },
-  resolve: {
-    extensions: ['', '.json', '.js', '.jsx'],
-    alias: {
-      'react': 'react-lite',
-      'react-dom': 'react-lite'
-    }
+    rules: [babelRule, htmlRule, styleRule],
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('css/style.css', {
-        allChunks: true
-    })
-  ]
+    new webpack.HashedModuleIdsPlugin(),
+    new HtmlWebPackPlugin({
+      template: join(appFolder, 'index.html'),
+      filename: join(publicFolder, 'index.html'),
+    }),
+  ],
+  resolve: {
+    modules: [appFolder, 'node_modules'],
+    extensions: ['.js', '.jsx', '.json'],
+    alias: {
+      components: join(appFolder, 'components'),
+      styles: join(appFolder, 'scss'),
+      utils: join(appFolder, 'utils'),
+    },
+  },
 };
