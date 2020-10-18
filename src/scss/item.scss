@@ -1,18 +1,41 @@
-$itemSpacing: .95rem;
-$itemBasis: 12rem;
-
 .item {
   background-color: #fff;
   border: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 60px 1fr 0.5fr;
+  grid-gap: 0.5rem;
   padding: 1rem;
   margin: 1rem;
 
-  & > * {
-    padding: 0 $itemSpacing;
+  .channel-image {
+    grid-column: 4;
+    place-self: end;
+    border-radius: 50%;
+    height: auto;
+    width: 5rem;
+  }
+
+  &__description {
+    grid-column: 1 / 4;
+  }
+
+  &__author-avatar {
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+  }
+
+  &__author-name {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    align-self: end;
+  }
+
+  &__time {
+    grid-column: 4;
+    grid-row: 3 / 4;
+    place-self: end;
+    min-width: 9rem;
   }
 
   &__header {
@@ -22,87 +45,34 @@ $itemBasis: 12rem;
     line-height: 2.5rem;
   }
 
-  // Image - subject & author images
-  &__image {
-    &:first-of-type {
-      align-self: flex-end;
-    }
-    img {
-      border-radius: 50%;
-      height: auto;
-      width: 3rem;
-    }
+  &__time time:first-child::after {
+    content: ' - ';
   }
 
-  &__details,
-  &__details > * {
-    display: flex;
-    flex-flow: row nowrap;
-    align-content: flex-end;
-    justify-content: space-between;
-  }
-
-  &__details,
-  &__description {
-    width: 95%;
-  }
-
-  // Description - course title & description
-  &__description {
-    line-height: 2rem;
-    p {
-      line-height: 1.5rem;
-    }
-  }
-
-  // Author - author & author avatar
-  &__author > * {
-    padding: 0 $itemSpacing;
-  }
-
-  // Time
-  &__time {
-    & time:first-child::after {
-      content: '-';
-      padding: 0 .25rem;
-    }
+  &__description p {
+    line-height: 1.5rem;
   }
 }
 
 // Called in media-queries.scss
 @mixin item--sm() {
   .item {
-    flex-direction: row;
     margin: 0;
-
-    &__details,
-    &__description {
-      width: 50%;
-    }
-
-    &__image {
-      &:first-of-type {
-        align-self: flex-start;
-      }
-    }
   }
 }
 
 @mixin item--md() {
   .item {
-    flex-direction: row;
     margin: 0;
-
-    &__details,
-    &__description {
-      width: 50%;
+    .channel-image {
+      grid-row: 2 / 3;
+      width: 7rem;
+      border-radius: 0.5rem;
+      border: 3px solid #000;
     }
 
-    &__image {
-      &:first-of-type {
-        align-self: flex-start;
-      }
+    &__description {
+      grid-row: 2 / 3;
     }
   }
-
 }
