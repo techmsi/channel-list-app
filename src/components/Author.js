@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Thumbnail } from 'components/Thumbnail';
+import { Thumbnail } from '/components/Thumbnail';
 
 export const Author = ({ name, avatar }) => (
-  <span className="item__author">
-    <Thumbnail url={avatar} />
-    <h3 rel="author">{name}</h3>
-  </span>
+  <>
+    <Thumbnail className="item__author-avatar" url={avatar} />
+    <h4 className="item__author-name">{name}</h4>
+  </>
 );

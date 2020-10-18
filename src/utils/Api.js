@@ -1,4 +1,6 @@
-import { groupBy, createDateHeaders } from 'utils/helpers';
+import { groupBy } from '/utils/groupBy';
+import { createDateHeaders } from '/utils/createDateHeaders';
+
 export default class Api {
   constructor(host) {
     this.host = host;
@@ -10,15 +12,17 @@ export default class Api {
     try {
       const response = await fetch(endpoint);
       const channels = await response.json();
+
       if (channels.length) {
-        // const headers = createDateHeaders(channels);
-        // groupedChannels = groupBy(headers, 'fullDate');
-        groupedChannels = channels;
+        const dateHeaders = createDateHeaders(channels);
+        const groupedByDate = groupBy(dateHeaders, 'fullDate');
+
+        groupedChannels = groupedByDate;
       }
 
       return groupedChannels;
     } catch (error) {
-      console.log('Fetch API Error', error);
+      console.log('Fetch Channels API Error', error);
     }
   };
 }

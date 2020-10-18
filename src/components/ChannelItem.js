@@ -1,14 +1,13 @@
 import React from 'react';
 
-import { Description } from 'components/Description';
-import { Thumbnail } from 'components/Thumbnail';
-import { DateTime } from 'components/DateTime';
-import { Author } from 'components/Author';
+import { Description } from '/components/Description';
+import { Thumbnail } from '/components/Thumbnail';
+import { Author } from '/components/Author';
+import { ProgramTime } from '/components/ProgramTime';
 
 export const ChannelItem = ({
   startTime,
   endTime,
-  duration,
   subjectPhotoUrl,
   title,
   description,
@@ -16,16 +15,11 @@ export const ChannelItem = ({
   instructorPhotoUrl,
 }) => {
   return (
-    <li className="item">
-      <Thumbnail url={subjectPhotoUrl} />
+    <li className="item" key={`channel-item-${title}`}>
+      <Thumbnail className="channel-image" url={subjectPhotoUrl} />
       <Description title={title} description={description} />
-      <div className="item__details">
-        <Author name={instructorName} avatar={instructorPhotoUrl} />
-        <span className="item__time">
-          <DateTime dateTime={startTime} formatString="h:mm A" />
-          <DateTime dateTime={endTime} />
-        </span>
-      </div>
+      <Author name={instructorName} avatar={instructorPhotoUrl} />
+      <ProgramTime startTime={startTime} endTime={endTime} />
     </li>
   );
 };
