@@ -1,0 +1,62 @@
+$accentColor: #8fe4b0;
+$darkerAccentColor: darken($accentColor, 25%);
+$bckColor: #e3e8df;
+
+.calendars {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0.5rem;
+}
+.calendar {
+  border: 1px solid darken($bckColor, 15%);
+  display: grid;
+  max-width: 22rem;
+  grid-template-columns: repeat(7, minmax(3rem, 5rem));
+  text-align: center;
+  align-items: end;
+  font-family: $headingFont;
+}
+
+.monthName {
+  font-size: 1.4rem;
+  grid-column: 1/8;
+  background-color: $darkerAccentColor;
+  color: #fff;
+  width: 100%;
+}
+.weekday {
+  background-color: $bckColor;
+  width: 100%;
+}
+
+.day {
+  min-width: 2rem;
+  min-height: 2rem;
+  margin: 0.45rem;
+}
+
+.empty {
+  background-color: #ccc;
+  background-image: linear-gradient(
+    45deg,
+    $accentColor 25%,
+    $bckColor 25%,
+    $bckColor 50%,
+    $accentColor 50%,
+    $accentColor 75%,
+    $bckColor 75%,
+    $bckColor 100%
+  );
+  background-size: 0.75rem 0.75rem;
+  border: 2px solid $accentColor;
+  min-width: 2rem;
+  min-height: 2.5rem;
+  margin: 0.15rem;
+}
+
+.today,
+.selected {
+  border: 2px solid $darkerAccentColor;
+  border-radius: 50%;
+  cursor: pointer;
+}

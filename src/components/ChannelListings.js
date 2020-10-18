@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Api from '/utils/Api';
 import { GroupedChannelList } from '/components/GroupedChannelList';
+import { Calendar } from '/components/Calendar';
 
 const api = new Api('http://localhost:3004');
 
@@ -14,5 +15,10 @@ export const ChannelListings = () => {
     });
   }, []);
 
-  return sortedList && <GroupedChannelList list={sortedList} />;
+  return (
+    <>
+      {sortedList && <Calendar programDates={Object.keys(sortedList)} />}
+      {sortedList && <GroupedChannelList list={sortedList} />}
+    </>
+  );
 };
