@@ -4,22 +4,22 @@
   "description": "Prototype for channel listings",
   "main": "server.js",
   "scripts": {
-    "start": "webpack-dev-server --open --hot --mode development",
-    "start:be": "nodemon server",
-    "build:dev": "webpack --mode development --watch",
-    "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server/",
+    "build": "parcel ./src/index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "assemble": "~0.3.11",
     "body-parser": "*",
-    "classnames": "*",
+    "components": "^0.1.0",
     "cors": "*",
+    "dayjs": "^1.9.3",
     "express": "*",
-    "moment": "*",
-    "moment-timezone": "*",
+    "grunt": "~0.4.0",
+    "mobx": "^6.0.1",
+    "mobx-react": "^7.0.0",
     "react": "*",
     "react-dom": "*",
     "react-router": "*"
@@ -27,22 +27,10 @@
   "devDependencies": {
     "@babel/core": "*",
     "@babel/plugin-proposal-class-properties": "*",
-    "@babel/plugin-transform-async-to-generator": "^7.10.4",
-    "@babel/preset-env": "*",
     "@babel/preset-react": "*",
-    "autoprefixer": "*",
-    "babel-loader": "*",
-    "css-loader": "*",
-    "extract-text-webpack-plugin": "*",
-    "html-loader": "*",
-    "html-webpack-plugin": "*",
-    "nodemon": "*",
-    "sass": "*",
-    "sass-loader": "*",
-    "style-loader": "*",
-    "webpack": "*",
-    "webpack-cli": "*",
-    "webpack-dev-server": "*"
+    "nodemon": "^2.0.5",
+    "parcel-bundler": "*",
+    "sass": "^1.27.0"
   },
   "browserslist": [
     "last 1 Chrome version"

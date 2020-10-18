@@ -1,13 +1,16 @@
-const { resolve, join } = require('path');
+const { resolve } = require('path');
+const { readFileSync } = require('fs');
 const express = require('express');
 const cors = require('cors');
 const app = express();
+
 const port = process.env.PORT || 3004;
 const channels = require('./data/channel.json');
 
-const reactHtmlFile = join(__dirname, 'public/index.html');
+const reactHtmlFilePath = resolve(__dirname, '..', 'dist/index.html');
+const reactHtmlFile = readFileSync(reactHtmlFilePath, 'utf8');
 
-app.use(express.static('public'));
+app.use(express.static('dist'));
 app.use(cors());
 
 app.listen(port, (err) => {
@@ -29,6 +32,7 @@ app.get('/channel/:authorName?', (req, res) => {
 
   if (authorName) {
     console.log('Requested author', authorName);
+
     channelsByAuthor = channels.filter(
       ({ instructorName }) => instructorName === authorName
     );
@@ -37,9 +41,7 @@ app.get('/channel/:authorName?', (req, res) => {
   res.json(channelsByAuthor);
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(reactHtmlFile);
-});
+app.use('/', (req, res) => res.send(reactHtmlFile));
 
 // For testing
 module.exports = app;

@@ -6,3 +6,5 @@
 # Ignore build files
 /public/js
 /public/css
+.cache
+
