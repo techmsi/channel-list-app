@@ -11,15 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "assemble": "~0.3.11",
     "body-parser": "*",
-    "components": "^0.1.0",
     "cors": "*",
-    "dayjs": "^1.9.3",
+    "dayjs": "*",
     "express": "*",
-    "grunt": "~0.4.0",
-    "mobx": "^6.0.1",
-    "mobx-react": "^7.0.0",
+    "mobx": "*",
+    "mobx-react": "*",
     "react": "*",
     "react-dom": "*",
     "react-router": "*"
@@ -28,9 +25,9 @@
     "@babel/core": "*",
     "@babel/plugin-proposal-class-properties": "*",
     "@babel/preset-react": "*",
-    "nodemon": "^2.0.5",
+    "nodemon": "*",
     "parcel-bundler": "*",
-    "sass": "^1.27.0"
+    "sass": "*"
   },
   "browserslist": [
     "last 1 Chrome version"
